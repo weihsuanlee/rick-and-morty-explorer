@@ -1,11 +1,11 @@
-import { Fira_Code as FontMono, Inter as FontSans } from "next/font/google";
+import { Space_Grotesk as FontSans, Syne as FontDisplay } from "next/font/google";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
-export const fontMono = FontMono({
+export const fontDisplay = FontDisplay({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-display",
 });

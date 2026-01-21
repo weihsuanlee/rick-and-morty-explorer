@@ -1,53 +1,69 @@
-# Next.js & HeroUI Template
+# 🚀🧪 Rick & Morty Explorer
 
-This is a template for creating applications using Next.js 14 (app directory) and HeroUI (v2).
+A responsive Rick and Morty character explorer with search, pagination, and a detail drawer, designed with a subtle cyber aesthetic inspired by *Cyberr*.
 
-[Try it on CodeSandbox](https://githubbox.com/heroui-inc/heroui/next-app-template)
+**Demo:** add your live link here
 
-## Technologies Used
+## 🧰 Tech Stack
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [HeroUI v2](https://heroui.com/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+- Next.js (App Router)
+- TypeScript
+- Apollo Client
+- GraphQL (Rick and Morty API)
+- Tailwind CSS
+- HeroUI
+- next-themes
 
-## How to Use
+## ✨ Features
 
-### Use the template with create-next-app
+- Search characters by name with debounced input
+- Paginated character list with next/previous navigation
+- Detail drawer for quick access to character information
+- Shareable URL state via query string (`q`, `page`, `id`)
+- Cyber-inspired, minimalist visual styling
+- Responsive layout for desktop and mobile
 
-To create a new project based on this template using `create-next-app`, run the following command:
+## 🖼️ Screenshots
 
-```bash
-npx create-next-app -e https://github.com/heroui-inc/next-app-template
-```
+- Homepage: `public/screenshots/homepage.png`
+- Search results: `public/screenshots/search-results.png`
+- Character drawer: `public/screenshots/character-drawer.png`
 
-### Install dependencies
+## ⚙️ Getting Started
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+### Setup
 
 ```bash
 npm install
 ```
 
-### Run the development server
+### Run
 
 ```bash
 npm run dev
 ```
 
-### Setup pnpm (optional)
+Open `http://localhost:3000` in your browser.
 
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
+### Testing
 
-```bash
-public-hoist-pattern[]=*@heroui/*
-```
+- End-to-end tests with Playwright are planned but not implemented yet for this submission.
 
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
+## 🧠 Assumptions
 
-## License
+- The app consumes the public Rick and Morty GraphQL API, which is assumed to be stable and accessible without authentication.
+- Client-side rendering with Apollo Client is sufficient for the scope of this assignment.
+- SEO and server-side rendering are out of scope for the evaluation criteria.
 
-Licensed under the [MIT license](https://github.com/heroui-inc/next-app-template/blob/main/LICENSE).
+## ⚖️ Tradeoffs
+
+- Query string state enables shareable URLs and back/forward navigation but requires extra routing logic (syncing input, pagination, and selection) and more frequent URL updates.
+- Client-side data fetching keeps interactions fast and avoids SSR complexity, but it does not optimize for SEO or first paint as much as SSR/SSG.
+
+## 🔮 Possible Improvements
+
+- Add SSR for the initial page load while keeping pagination and filtering client-side.
+- Improve caching strategies, such as prefetching the next page or refining cache policies.
+- Add richer empty and error states with retry actions.
+- Extract icons into a shared icon system or adopt a dedicated icon library for consistency.
+- Add lightweight analytics around empty results and error cases.
