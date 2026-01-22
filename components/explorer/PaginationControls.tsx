@@ -4,8 +4,12 @@ import { Pagination } from "@heroui/pagination";
 
 import type { CharactersQuery } from "@/lib/graphql/characters";
 
+type CharactersInfo = NonNullable<
+  NonNullable<CharactersQuery["characters"]>["info"]
+>;
+
 type PaginationControlsProps = {
-  info: CharactersQuery["characters"] extends { info: infer Info } ? Info : null;
+  info: CharactersInfo | null;
   page: number;
   onPageChange: (page: number) => void;
 };
@@ -15,7 +19,7 @@ export function PaginationControls({
   page,
   onPageChange,
 }: PaginationControlsProps) {
-  const totalPages = info?.pages ?? 1
+  const totalPages = info?.pages ?? 1;
   
   return (
     <div className="flex items-center justify-center">

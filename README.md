@@ -23,6 +23,11 @@ A responsive Rick and Morty character explorer with search, pagination, and a de
 - Cyberr-inspired, minimalist visual styling
 - Light/Dark theme toggle
 - Responsive layout for desktop and mobile
+  
+**Notes**
+- Long names/text are clamped so cards stay tidy.
+- Character images use a fallback placeholder when missing/broken.
+- ARIA labels + keyboard support are wired for search, pagination, and the drawer.
 
 ## 🖼️ Screenshots
 

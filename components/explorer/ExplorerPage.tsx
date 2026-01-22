@@ -2,13 +2,14 @@
 
 import * as React from "react";
 import { useQuery } from "@apollo/client/react";
+import { Alert } from "@heroui/alert";
 import { Card, CardBody } from "@heroui/card";
 import { Chip } from "@heroui/chip";
-import { Alert } from "@heroui/alert";
 
 import { CharacterDrawer } from "@/components/explorer/CharacterDrawer";
 import { CharacterSkeleton } from "@/components/explorer/CharacterSkeleton";
 import { CharacterTable } from "@/components/explorer/CharacterTable";
+import { ExplorerStats } from "@/components/explorer/ExplorerStats";
 import { PaginationControls } from "@/components/explorer/PaginationControls";
 import { SearchBar } from "@/components/explorer/SearchBar";
 import { CHARACTERS_QUERY, type CharactersQuery, type CharactersQueryVariables } from "@/lib/graphql/characters";
@@ -27,7 +28,7 @@ export function ExplorerPage() {
 
   const characters = data?.characters?.results ?? [];
   const selectedCharacter =
-    selectedId && characters.length > 0 ? (characters.find((character) => character.id === selectedId) ?? null) : null;
+    selectedId && characters.length > 0 ? (characters.find((character) => character?.id === selectedId) ?? null) : null;
   const info = data?.characters?.info ?? null;
   const errorMessage = error?.message ?? "";
   const isNotFound = errorMessage.toLowerCase().includes("404");
@@ -65,17 +66,7 @@ export function ExplorerPage() {
                 Search, paginate, and tap into detailed records using Apollo Client and the Rick and Morty GraphQL API.
               </p>
             </div>
-            <div className="flex flex-wrap items-center gap-3 text-sm text-default-600">
-              <div className="rounded-full border border-default-200 bg-content1 px-3 py-1">
-                {totalCount.toLocaleString()} total
-              </div>
-              <div className="rounded-full border border-default-200 bg-content1 px-3 py-1">
-                Page {page} / {totalPages}
-              </div>
-              <div aria-live="polite" className="rounded-full border border-default-200 bg-content1 px-3 py-1">
-                {resultsCount} shown
-              </div>
-            </div>
+            <ExplorerStats page={page} resultsCount={resultsCount} totalCount={totalCount} totalPages={totalPages} />
           </div>
         </header>
 
@@ -104,7 +95,14 @@ export function ExplorerPage() {
             {loading ? <CharacterSkeleton count={10} /> : null}
 
             {!loading && hasResults ? (
-              <CharacterTable characters={characters} onSelect={(character) => setSelectedId(character.id, "push")} />
+              <CharacterTable
+                characters={characters}
+                onSelect={(character) => {
+                  if (character?.id) {
+                    setSelectedId(character.id, "push");
+                  }
+                }}
+              />
             ) : null}
 
             {showEmpty ? (
@@ -114,7 +112,11 @@ export function ExplorerPage() {
               </div>
             ) : null}
 
-            {!loading ? <PaginationControls info={info} onPageChange={goToPage} page={page} /> : null}
+            {!loading ? (
+              <div className="pt-4">
+                <PaginationControls info={info} onPageChange={goToPage} page={page} />
+              </div>
+            ) : null}
           </CardBody>
         </Card>
       </section>

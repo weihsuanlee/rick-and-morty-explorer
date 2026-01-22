@@ -15,10 +15,9 @@ export function ApolloClientProvider({
   children,
   initialState,
 }: ApolloClientProviderProps) {
-  const client = React.useMemo(
-    () => createApolloClient(initialState),
-    [initialState],
-  );
+  // Keep a single Apollo client instance for the lifetime of the app so URL changes
+  // (like selecting a character) don't recreate the client and refetch list data.
+  const clientRef = React.useRef(createApolloClient(initialState));
 
-  return <ApolloProvider client={client}>{children}</ApolloProvider>;
+  return <ApolloProvider client={clientRef.current}>{children}</ApolloProvider>;
 }
