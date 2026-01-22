@@ -19,7 +19,11 @@ export function PaginationControls({
   page,
   onPageChange,
 }: PaginationControlsProps) {
-  const totalPages = info?.pages ?? 1;
+  const totalPages = typeof info?.pages === "number" ? info.pages : 0;
+
+  if (totalPages < 1) {
+    return null;
+  }
   
   return (
     <div className="flex items-center justify-center">
