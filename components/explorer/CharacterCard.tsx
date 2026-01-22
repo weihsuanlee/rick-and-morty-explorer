@@ -18,7 +18,7 @@ type CharacterCardProps = {
 export function CharacterCard({ character, onSelect }: CharacterCardProps) {
   return (
     <Card
-      aria-label={`View details for ${character.name}`}
+      aria-label={`View details for ${character?.name}`}
       className="cyber-card bg-content1 shadow-medium hover:shadow-large hover:bg-content2 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       isPressable
       onKeyDown={(event) => {
@@ -35,30 +35,34 @@ export function CharacterCard({ character, onSelect }: CharacterCardProps) {
           <div className="flex items-center gap-3">
             <div className="flex-shrink-0">
               <Image
-                alt={character.name || "Character image"}
+                alt={character?.name || "Character image"}
                 className="h-12 w-12 object-cover"
                 radius="full"
                 fallbackSrc={CHARACTER_IMAGE_PLACEHOLDER}
-                src={character.image || CHARACTER_IMAGE_PLACEHOLDER}
+                src={character?.image || CHARACTER_IMAGE_PLACEHOLDER}
               />
             </div>
             <div className="min-w-0">
-              <p className="line-clamp-2 font-display text-lg font-semibold text-foreground">{character.name}</p>
-              <p className="text-xs text-default-500">{character.origin?.name ?? "Unknown origin"}</p>
+              <p className="line-clamp-2 font-display text-lg font-semibold text-foreground">{character?.name}</p>
+              <p className="text-xs text-default-500">{character?.origin?.name ?? "Unknown origin"}</p>
             </div>
           </div>
-          <StatusChip status={character.status} size="sm" variant="flat" />
+          <StatusChip status={character?.status} size="sm" variant="flat" />
         </div>
 
         <div className="flex flex-wrap gap-2">
+          {character?.species && (
+            <Chip size="sm" variant="bordered">
+              {character.species}
+            </Chip>
+          )}
+          {character?.gender && (
+            <Chip size="sm" variant="bordered">
+              {character.gender}
+            </Chip>
+          )}
           <Chip size="sm" variant="bordered">
-            {character.species}
-          </Chip>
-          <Chip size="sm" variant="bordered">
-            {character.gender}
-          </Chip>
-          <Chip size="sm" variant="bordered">
-            {character.location?.name ?? "Unknown location"}
+            {character?.location?.name ?? "Unknown location"}
           </Chip>
         </div>
       </CardBody>
