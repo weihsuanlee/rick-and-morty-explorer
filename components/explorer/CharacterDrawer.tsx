@@ -66,7 +66,7 @@ export function CharacterDrawer({ character, characterId, isOpen, onClose }: Cha
       placement="right"
       size="lg"
     >
-      <DrawerContent>
+      <DrawerContent className="rounded-l-none sm:rounded-l-lg">
         {(close) => (
           <>
             <DrawerHeader className="flex flex-col gap-2">

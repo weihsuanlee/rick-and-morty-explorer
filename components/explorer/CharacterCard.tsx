@@ -47,7 +47,7 @@ export function CharacterCard({ character, onSelect }: CharacterCardProps) {
               <p className="text-xs text-default-500">{character?.origin?.name ?? "Unknown origin"}</p>
             </div>
           </div>
-          <StatusChip status={character?.status} size="sm" variant="flat" />
+          <StatusChip status={character?.status} size="sm" variant="flat" className="ml-2" />
         </div>
 
         <div className="flex flex-wrap gap-2">

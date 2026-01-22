@@ -2,7 +2,7 @@
 
 A responsive Rick and Morty character explorer with search, pagination, and a detail drawer, designed with a subtle cyber aesthetic inspired by *Cyberr*.
 
-**Demo:** add your live link here
+**Demo:** [https://rick-and-morty-explorer-ochre.vercel.app/](https://rick-and-morty-explorer-ochre.vercel.app/)
 
 ## 🧰 Tech Stack
 
