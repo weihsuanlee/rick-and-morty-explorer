@@ -20,22 +20,48 @@ A responsive Rick and Morty character explorer with search, pagination, and a de
 - Paginated character list with next/previous navigation
 - Detail drawer for quick access to character information
 - Shareable URL state via query string (`q`, `page`, `id`)
-- Cyber-inspired, minimalist visual styling
+- Cyberr-inspired, minimalist visual styling
+- Light/Dark theme toggle
 - Responsive layout for desktop and mobile
 
 ## 🖼️ Screenshots
 
-- Homepage: `public/screenshots/homepage.png`
-- Search results: `public/screenshots/search-results.png`
-- Character drawer: `public/screenshots/character-drawer.png`
+- **Homepage** — Main explorer view with search, filters, and pagination.
+
+  ![Homepage](public/screenshots/homepage.png)
+
+- **Character drawer** — Slide-over detail panel with status, origin, and episodes.
+
+  ![Character drawer](public/screenshots/character-drawer.png)
+
+- **Light theme** — Default light theme.
+
+  ![Light theme](public/screenshots/theme-light.png)
+
+- **404 page** — Not-found state with styling.
+
+  ![404 page](public/screenshots/not-found.png)
 
 ## ⚙️ Getting Started
 
 ### Setup
-
 ```bash
 npm install
 ```
+
+## 📝 Project Notes
+
+### Time Spent
+
+Approximately 7 hours over 2 days.
+
+### Time Breakdown
+
+- Initial setup (HeroUI template, Apollo Client, Tailwind CSS) — ~1.5h
+- Feature implementation and component work (search, pagination, drawer) — ~3h
+- SSR for initial load — ~1h
+- README documentation — ~0.5h
+- Testing setup and coverage — ~1h
 
 ### Run
 
@@ -47,23 +73,34 @@ Open `http://localhost:3000` in your browser.
 
 ### Testing
 
-- End-to-end tests with Playwright are planned but not implemented yet for this submission.
+- Install browsers (one-time):
+
+```bash
+npx playwright install
+```
+
+- Run end-to-end tests:
+
+```bash
+npm run test:e2e
+```
 
 ## 🧠 Assumptions
 
-- The app consumes the public Rick and Morty GraphQL API, which is assumed to be stable and accessible without authentication.
-- Client-side rendering with Apollo Client is sufficient for the scope of this assignment.
-- SEO and server-side rendering are out of scope for the evaluation criteria.
+- The Rick and Morty GraphQL API is stable, publicly accessible, and does not require authentication.
+- The dataset changes infrequently, making SSR of the initial page valuable for SEO and perceived performance.
+- Client-side pagination and filtering are sufficient given the expected data size and traffic.
 
 ## ⚖️ Tradeoffs
 
 - Query string state enables shareable URLs and back/forward navigation but requires extra routing logic (syncing input, pagination, and selection) and more frequent URL updates.
-- Client-side data fetching keeps interactions fast and avoids SSR complexity, but it does not optimize for SEO or first paint as much as SSR/SSG.
+- SSR is intentionally limited to the initial page to improve SEO and first paint while keeping filtering and pagination fully client-side for responsiveness.
+- Combining SSR and CSR improves the initial user experience but increases complexity around cache hydration and state consistency.
 
 ## 🔮 Possible Improvements
 
-- Add SSR for the initial page load while keeping pagination and filtering client-side.
-- Improve caching strategies, such as prefetching the next page or refining cache policies.
-- Add richer empty and error states with retry actions.
-- Extract icons into a shared icon system or adopt a dedicated icon library for consistency.
-- Add lightweight analytics around empty results and error cases.
+- Extend SSR to support the first page with an active search query if SEO for search results becomes a priority.
+- Enhance caching strategies, such as prefetching the next page or fine-tuning cache policies.
+- Improve empty and error states with clearer messaging and retry actions.
+- Extract icons into a shared icon system or adopt a dedicated icon library for better consistency and maintainability.
+- Add lightweight analytics to track empty results, errors, and user interaction patterns.

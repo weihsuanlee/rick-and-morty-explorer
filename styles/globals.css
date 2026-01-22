@@ -36,6 +36,15 @@
     color: transparent;
 }
 
+.rm-bounce-ball {
+    width: 18px;
+    height: 18px;
+    border-radius: 9999px;
+    background: #9dff7a;
+    box-shadow: 0 0 18px rgba(157, 255, 122, 0.55);
+    animation: rm-bounce 1.6s ease-in-out infinite;
+}
+
 .animate-gradient {
     background-size: 300% 300%;
     animation: gradient-shift 8s ease infinite;
@@ -118,6 +127,16 @@
     }
     100% {
         background-position: 0% 50%;
+    }
+}
+
+@keyframes rm-bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
     }
 }
 

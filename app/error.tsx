@@ -22,7 +22,8 @@ export default function Error({
           Error
         </p>
         <h2 className="font-display text-4xl font-semibold text-foreground">
-          Something went wrong
+          Something went{" "}
+          <span className="gradient-text animate-gradient">wrong</span>
         </h2>
         <p className="text-sm text-default-500">
           Try again, or head back to the Explorer.

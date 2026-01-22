@@ -19,9 +19,6 @@ query Characters($page: Int, $name: String) {
       location {
         name
       }
-      episode {
-        id
-      }
     }
   }
 }

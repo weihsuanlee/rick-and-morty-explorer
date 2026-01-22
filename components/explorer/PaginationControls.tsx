@@ -15,7 +15,8 @@ export function PaginationControls({
   page,
   onPageChange,
 }: PaginationControlsProps) {
-  const totalPages = info?.pages ?? 1;
+  const totalPages = info?.pages ?? 1
+  
   return (
     <div className="flex items-center justify-center">
       <Pagination

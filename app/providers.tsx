@@ -3,10 +3,8 @@
 import type { ThemeProviderProps } from "next-themes";
 import * as React from "react";
 import { HeroUIProvider } from "@heroui/system";
-import { ApolloProvider } from "@apollo/client/react";
 import { useRouter } from "next/navigation";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { createApolloClient } from "@/lib/apollo/client";
 
 export interface ProvidersProps {
   children: React.ReactNode;
@@ -23,13 +21,9 @@ declare module "@react-types/shared" {
 
 export function Providers({ children, themeProps }: ProvidersProps) {
   const router = useRouter();
-  const client = React.useMemo(() => createApolloClient(), []);
-
   return (
     <HeroUIProvider navigate={router.push}>
-      <ApolloProvider client={client}>
-        <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
-      </ApolloProvider>
+      <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
     </HeroUIProvider>
   );
 }
